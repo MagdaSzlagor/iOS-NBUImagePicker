@@ -511,8 +511,8 @@
     // Not set?
     if (CGSizeEqualToSize(targetResolution, CGSizeZero))
     {
-        NBULogInfo(@"No target resolution was set. Capturing full resolution pictures ('%@').", AVCaptureSessionPresetPhoto);
-        return AVCaptureSessionPresetPhoto;
+        NBULogInfo(@"No target resolution was set. Capturing full resolution pictures ('%@').", AVCaptureSessionPresetHigh);
+        return AVCaptureSessionPresetHigh;
     }
     
     // Make sure to have a portrait size
@@ -598,7 +598,7 @@
     
     // Update UI
     _shootButton.enabled = NO;
-    [self flashHighlightMask];
+    //[self flashHighlightMask];
     
 #if !TARGET_IPHONE_SIMULATOR
     // Get the image
