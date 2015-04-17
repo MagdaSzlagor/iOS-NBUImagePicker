@@ -598,15 +598,18 @@
     
     // Update UI
     _shootButton.enabled = NO;
-    //[self flashHighlightMask];
     
 #if !TARGET_IPHONE_SIMULATOR
+    // freeze the preview
+    _previewLayer.connection.enabled = NO;
+    
     // Get the image
     [_captureImageOutput captureStillImageAsynchronouslyFromConnection:_videoConnection
                                                      completionHandler:^(CMSampleBufferRef imageDataSampleBuffer,
                                                                          NSError * error)
      {
          _captureInProgress = NO;
+         _previewLayer.connection.enabled = YES;
          
          // Stop session if needed
          if (!self.window && _captureSession.running)
