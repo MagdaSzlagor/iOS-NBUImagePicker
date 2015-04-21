@@ -24,27 +24,27 @@
 @protocol UIButton;
 
 /// NBUCameraView blocks.
-typedef void (^NBUCapturePictureResultBlock)(UIImage * image,
-                                             NSError * error);
-typedef void (^NBUSavePictureResultBlock)(UIImage * image,
-                                          NSDictionary * metadata,
-                                          NSURL * url,
-                                          NSError * error);
-typedef void (^NBUCaptureMovieResultBlock)(NSURL * movieURL,
-                                           NSError * error);
-typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
-                                            NSInteger mode);
+typedef void (^NBUCapturePictureResultBlock)(UIImage *image,
+                                             NSError *error);
+typedef void (^NBUSavePictureResultBlock)(UIImage *     image,
+                                          NSDictionary *metadata,
+                                          NSURL *       url,
+                                          NSError *     error);
+typedef void (^NBUCaptureMovieResultBlock)(NSURL *  movieURL,
+                                           NSError *error);
+typedef void (^NBUButtonConfigurationBlock)(id <UIButton> button,
+                                            NSInteger     mode);
 
 /**
- Fully customizable camera view based on AVFoundation.
- 
- - Set target resolution.
- - Customizable controls/buttons and layout.
- - Supports flash, focus, exposure and white balance settings.
- - Can automatically save to device's Camera Roll/custom albums.
- - Can be used with any UIViewController, so it can be embedded in a UITabView, pushed to a UINavigationController, presented modally, etc.
- - Works with simulator.
- - Proper orientation support both in autorotation-locked devices and simulator.
+   Fully customizable camera view based on AVFoundation.
+
+   - Set target resolution.
+   - Customizable controls/buttons and layout.
+   - Supports flash, focus, exposure and white balance settings.
+   - Can automatically save to device's Camera Roll/custom albums.
+   - Can be used with any UIViewController, so it can be embedded in a UITabView, pushed to a UINavigationController, presented modally, etc.
+   - Works with simulator.
+   - Proper orientation support both in autorotation-locked devices and simulator.
  */
 @interface NBUCameraView : ActiveView
 
@@ -70,7 +70,7 @@ typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
 
 /// If set along savePicturesToLibrary the assets will be added to a given album.
 /// @note A new album may be created if necessary.
-@property (nonatomic, strong)           NSString * targetLibraryAlbumName;
+@property (nonatomic, strong)           NSString *targetLibraryAlbumName;
 
 /// The optional block to be called if savePicturesToLibrary is enabled.
 /// @note This block has some delay over captureResultBlock.
@@ -83,10 +83,10 @@ typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
 /// Whether front camera's pictures should be captured mirrored.
 /// Default `NO` meaning that front camera pictures are not mirrored.
 /// @note Front camera's preview is always mirrored.
-@property(nonatomic)                    BOOL keepFrontCameraPicturesMirrored;
+@property (nonatomic)                    BOOL keepFrontCameraPicturesMirrored;
 
 /// Whether the lastPictureImageView should be animated. Default `YES`.
-@property(nonatomic)                    BOOL animateLastPictureImageView;
+@property (nonatomic)                    BOOL animateLastPictureImageView;
 
 /// @name Picture Sequence Properties
 
@@ -95,20 +95,20 @@ typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
 
 /// Whether the camera is currently capturing a sequence of images.
 @property (nonatomic, readonly,
-           getter=isCapturingSequence)  BOOL capturingSequence;
+           getter = isCapturingSequence)  BOOL capturingSequence;
 
 /// @name Movie Properties
 
 /// The local folder where recorded movies should be recorded.
 /// @discussion If not specified movies will be saved to the application's Documents folder.
-@property (nonatomic, strong)           NSURL * targetMovieFolder;
+@property (nonatomic, strong)           NSURL *targetMovieFolder;
 
 /// The block to be called after capturing a movie.
 @property (nonatomic, copy)             NBUCaptureMovieResultBlock captureMovieResultBlock;
 
 /// Whether recording is in progress.
 @property (nonatomic, readonly,
-           getter=isRecording)          BOOL recording;
+           getter = isRecording)          BOOL recording;
 
 /// @name Access Permissions
 
@@ -122,39 +122,39 @@ typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
 
 /// The available capture devices' uniqueID's (ex. Front, Back camera).
 /// @see [AVCaptureDevice uniqueID].
-@property (strong, nonatomic, readonly) NSArray * availableCaptureDevices;
+@property (strong, nonatomic, readonly) NSArray *availableCaptureDevices;
 
 /// The current capture device's uniqueID.
 /// @discussion Changing the current device refreshes the availableFlashModes, availableFocusModes,
 /// availableExposureModes and availableWhiteBalanceModes.
-@property (strong, nonatomic)           NSString * currentCaptureDevice;
+@property (strong, nonatomic)           NSString *currentCaptureDevice;
 
 /// The current device's available capture presets and resolutions.
-@property (nonatomic, strong)           NSDictionary * availableResolutions;
+@property (nonatomic, strong)           NSDictionary *availableResolutions;
 
 /// The current device's available AVCaptureFlashMode modes.
-@property (strong, nonatomic, readonly) NSArray * availableFlashModes;
+@property (strong, nonatomic, readonly) NSArray *availableFlashModes;
 
 /// The current capture device's AVCaptureFlashMode.
 /// @see availableFlashModes.
 @property (nonatomic)                   AVCaptureFlashMode currentFlashMode;
 
 /// The current device's available AVCaptureFocusMode modes.
-@property (strong, nonatomic, readonly) NSArray * availableFocusModes;
+@property (strong, nonatomic, readonly) NSArray *availableFocusModes;
 
 /// The current capture device's AVCaptureFocusMode.
 /// @see availableFocusModes.
 @property (nonatomic)                   AVCaptureFocusMode currentFocusMode;
 
 /// The current device's available AVCaptureExposureMode modes.
-@property (strong, nonatomic, readonly) NSArray * availableExposureModes;
+@property (strong, nonatomic, readonly) NSArray *availableExposureModes;
 
 /// The current capture device's AVCaptureExposureMode.
 /// @see availableExposureModes.
 @property (nonatomic)                   AVCaptureExposureMode currentExposureMode;
 
 /// The current device's available AVCaptureWhiteBalanceMode modes.
-@property (strong, nonatomic, readonly) NSArray * availableWhiteBalanceModes;
+@property (strong, nonatomic, readonly) NSArray *availableWhiteBalanceModes;
 
 /// The current capture device's AVCaptureWhiteBalanceMode.
 /// @see availableWhiteBalanceModes.
@@ -166,20 +166,20 @@ typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
 @property (nonatomic)                   BOOL showDisabledControls;
 
 /// The block to be used to configure the toggleCameraButton.
-@property (nonatomic, copy)             void(^toggleCameraButtonConfigurationBlock)(id<UIButton> button,
-                                                                                    AVCaptureDevicePosition position);
+@property (nonatomic, copy)             void (^toggleCameraButtonConfigurationBlock)(id <UIButton> button,
+                                                                                     AVCaptureDevicePosition position);
 /// The block to be used to configure the flashButton.
-@property (nonatomic, copy)             void(^flashButtonConfigurationBlock)(id<UIButton> button,
-                                                                             AVCaptureFlashMode mode);
+@property (nonatomic, copy)             void (^flashButtonConfigurationBlock)(id <UIButton> button,
+                                                                              AVCaptureFlashMode mode);
 /// The block to be used to configure the focusButton.
-@property (nonatomic, copy)             void(^focusButtonConfigurationBlock)(id<UIButton> button,
-                                                                             AVCaptureFocusMode mode);
+@property (nonatomic, copy)             void (^focusButtonConfigurationBlock)(id <UIButton> button,
+                                                                              AVCaptureFocusMode mode);
 /// The block to be used to configure the exposureButton.
-@property (nonatomic, copy)             void(^exposureButtonConfigurationBlock)(id<UIButton> button,
-                                                                                AVCaptureExposureMode mode);
+@property (nonatomic, copy)             void (^exposureButtonConfigurationBlock)(id <UIButton> button,
+                                                                                 AVCaptureExposureMode mode);
 /// The block to be used to configure the whiteBalanceButton.
-@property (nonatomic, copy)             void(^whiteBalanceButtonConfigurationBlock)(id<UIButton> button,
-                                                                                    AVCaptureWhiteBalanceMode mode);
+@property (nonatomic, copy)             void (^whiteBalanceButtonConfigurationBlock)(id <UIButton> button,
+                                                                                     AVCaptureWhiteBalanceMode mode);
 /// @name Actions
 
 /// Take a picture and execure the resultBlock.
@@ -232,28 +232,30 @@ typedef void (^NBUButtonConfigurationBlock)(id<UIButton> button,
 /// @param titles The possible titles. One for each mode.
 - (NBUButtonConfigurationBlock)buttonConfigurationBlockWithTitleFrom:(NSArray *)titles;
 
+- (void)tapped:(UITapGestureRecognizer *)sender;
+
 /// @name UI Outlets
 
 /// The button to takePicture:.
-@property (weak, nonatomic) IBOutlet id<UIButton> shootButton;
+@property (weak, nonatomic) IBOutlet id <UIButton> shootButton;
 
 /// The optional button to toggleCamera:.
-@property (weak, nonatomic) IBOutlet id<UIButton> toggleCameraButton;
+@property (weak, nonatomic) IBOutlet id <UIButton> toggleCameraButton;
 
 /// The optional button to toggleFlashMode:.
-@property (weak, nonatomic) IBOutlet id<UIButton> flashButton;
+@property (weak, nonatomic) IBOutlet id <UIButton> flashButton;
 
 /// The optional button to toggleFocusMode:.
-@property (weak, nonatomic) IBOutlet id<UIButton> focusButton;
+@property (weak, nonatomic) IBOutlet id <UIButton> focusButton;
 
 /// The optional button to toggleExposureMode:.
-@property (weak, nonatomic) IBOutlet id<UIButton> exposureButton;
+@property (weak, nonatomic) IBOutlet id <UIButton> exposureButton;
 
 /// The optional button to toggleWhiteBalanceMode:.
-@property (weak, nonatomic) IBOutlet id<UIButton> whiteBalanceButton;
+@property (weak, nonatomic) IBOutlet id <UIButton> whiteBalanceButton;
 
 /// The optional UIImageView to be used to display the last taken picture.
 /// @note Check the PickerDemo project for other ways to customize displaying the last taken pictures.
-@property (weak, nonatomic) IBOutlet UIImageView * lastPictureImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *lastPictureImageView;
 
 @end
