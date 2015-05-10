@@ -511,8 +511,8 @@
     // Not set?
     if (CGSizeEqualToSize(targetResolution, CGSizeZero))
     {
-        NBULogInfo(@"No target resolution was set. Capturing full resolution pictures ('%@').", AVCaptureSessionPresetHigh);
-        return AVCaptureSessionPresetHigh;
+        NBULogInfo(@"No target resolution was set. Capturing full resolution pictures ('%@').", AVCaptureSessionPresetPhoto);
+        return AVCaptureSessionPresetPhoto;
     }
     
     // Make sure to have a portrait size
