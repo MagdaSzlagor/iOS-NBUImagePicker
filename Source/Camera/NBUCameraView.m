@@ -92,18 +92,6 @@
     // First orientation update
     [MotionOrientation initialize];
     [self setDeviceOrientation:[MotionOrientation sharedInstance].deviceOrientation];
-    
-    // Observe orientation changes
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(deviceOrientationChanged:)
-                                                 name:MotionOrientationChangedNotification
-                                               object:nil];
-}
-
-- (void)dealloc
-{
-    // Stop observing
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)layoutSubviews 
@@ -186,6 +174,12 @@
         _shootButton.enabled = YES;
         NBULogVerbose(@"Capture session: {\n%@} started running", _captureSession);
     }
+    
+    // Observe orientation changes
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOrientationChanged:)
+                                                 name:MotionOrientationChangedNotification
+                                               object:nil];
 }
 
 - (void)viewWillDisappear
@@ -198,6 +192,9 @@
         [_captureSession stopRunning];
         NBULogVerbose(@"Capture session: {\n%@} stopped running", _captureSession);
     }
+    
+    // Stop observing
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Handle orientation changes
