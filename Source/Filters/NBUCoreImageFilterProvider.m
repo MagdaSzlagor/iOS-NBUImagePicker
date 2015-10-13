@@ -293,7 +293,7 @@
             if (![filter boolValueForKey:@"autoAdjust"])
                 continue;
             
-            NSArray * autoFilters = [ciImage autoAdjustmentFilters];
+            NSArray * autoFilters = [ciImage autoAdjustmentFiltersWithOptions:nil];
             NBULogVerbose(@"Applying auto adjustment filters: %@", autoFilters);
             for (ciFilter in autoFilters)
             {
